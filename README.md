@@ -16,17 +16,17 @@ On youtube, the example of simulation is uploaded.
 ##Installastion
 
 1. Copy the project on your catkin workspace ( you need to install ROS prioly)
- -cd catkin_ws
- -cd src
- -git clone
+ - cd catkin_ws
+ - cd src
+ - git clone
 
 2. Install depenancies ( !important)
- -rosdep update
- -cd ..
- -rosdep update rosdep install --rosdistro kinetic --ignore-src --from-paths src
- -catkin_make
+ - rosdep update
+ - cd ..
+ - rosdep update rosdep install --rosdistro kinetic --ignore-src --from-paths src
+ - catkin_make
 
 3.Launch simulation
- -roslaunch summer_gazebo ur5_robotiq.launch 
- -rosrun summer_gazebo gazebo_teleop_key_xyz.py
- -rosrun summer_gazebo gripper_test.py
+ - roslaunch summer_gazebo ur5_robotiq.launch 
+ - rosrun summer_gazebo gazebo_teleop_key_xyz.py
+ - rosrun summer_gazebo gripper_test.py
