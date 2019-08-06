@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="ur5_robotiq3" >
+
+<!-- (0) Stand -->
+
+  <link name="world"/>
+
+  <!-- Stand -->
+  <link name="stand">
+    <inertial>
+        <mass value="1000" />
+        <origin xyz="0 0 0.5" rpy="0 0 0" />
+        <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+    </inertial>
+    <visual>
+        <origin xyz="0 0 0.5" rpy="0 0 0" />
+        <geometry>
+            <cylinder length="1.0" radius="0.1" />
+        </geometry>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0.5" rpy="0 0 0" />
+        <geometry>
+            <!-- <box size="0.2 0.2 1.0" /> -->
+            <cylinder length="1.0" radius="0.1" />
+        </geometry>
+    </collision>
+  </link>
+
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="stand"/>
+  </joint>  
+
+<!-- (1) UR5 (extracted from "ur_description/ur5_upload.launch" from "universal_robot" package-->
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+
+  <!-- ur5 -->
+  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+
+  <!-- arm -->
+  <xacro:ur5_robot prefix="" joint_limited="false"/>
+
+  <!-- <link name="world" /> -->
+
+  <joint name="stand_joint" type="fixed">
+    <parent link="stand" />
+    <child link = "base_link" />
+    <origin xyz="0.0 0.0 1.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+
+<!-- (2) Robotiq 3-finger gripper (Right Hand)-->
+  <!-- gripper --><!--
+  <xacro:include filename="$(find robotiq_3f_gripper_visualization)/cfg/robotiq-3f-gripper_articulated_macro.xacro" />
+  <xacro:robotiq-3f-gripper_articulated prefix="" parent="ee_link" reflect="1">
+    <origin rpy="0 0 ${-pi/2.0}" xyz="0.051 0 0"/>
+  </xacro:robotiq-3f-gripper_articulated>
+-->
+  
+
+
+</robot>

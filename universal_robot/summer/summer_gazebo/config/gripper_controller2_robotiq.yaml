@@ -1,0 +1,13 @@
+gripper_controller:
+  type: effort_controllers/GripperActionController
+  joint: robotiq_85_left_knuckle_joint
+  constraints:
+      goal_time: 0.6
+      stopped_velocity_tolerance: 0.05
+      robotiq_85_left_knuckle_joint: {trajectory: 0.2, goal: 0.2}
+  stop_trajectory_duration: 0.5
+  max_effort: 100
+  state_publish_rate:  25
+  action_monitor_rate: 10
+  gains: # Required because we're controlling an effort interface
+    robotiq_85_left_knuckle_joint: {p: 20,  d: 0, i: 0.1, i_clamp: 0.3}

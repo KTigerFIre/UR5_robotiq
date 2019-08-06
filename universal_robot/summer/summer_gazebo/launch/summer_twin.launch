@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="limited" default="false" />
+  <arg name="paused" default="true"  />
+  <arg name="gui" default="true"  />
+  
+  <!-- startup simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" default="$(find summer_gazebo)/worlds/empty.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+  <group ns="/robot1">
+    <rosparam file="$(find summer_gazebo)/config/arm_controller_ur5.yaml" command="load"/>
+    <include file="$(find summer_gazebo)/launch/controller_utils.launch"/>
+    <node name="robot1_arm_controller_spawner" pkg="controller_manager" type="spawner" ns="/robot1" args="--namespace=/robot1 arm_controller joint_state_controller --shutdown-timeout 3" respawn="false" output="screen"/>
+      <!-- send robot urdf to param server -->
+    <include file="$(find summer_description)/launch/summer_upload.launch">
+    <arg name="limited" value="$(arg limited)"/>
+    </include><!-- push robot_description to factory and spawn robot in gazebo -->
+    <node name="robot1_spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" 
+         args="-urdf -param robot_description -model summer_robot1 -z 0
+            -J elbow_joint 1.5
+            -J shoulder_lift_joint -1.22
+            -J shoulder_pan_joint 0"
+         output="screen" />
+  </group>
+
+    <group ns="/robot2">
+    <rosparam file="$(find summer_gazebo)/config/arm_controller_ur5.yaml" command="load"/>
+    <include file="$(find summer_gazebo)/launch/controller_utils.launch"/>
+    <node name="robot2_arm_controller_spawner" pkg="controller_manager" type="spawner" ns="/robot2" args="--namespace=/robot2 arm_controller joint_state_controller --shutdown-timeout 3" respawn="false" output="screen"/>
+      <!-- send robot urdf to param server -->
+    <include file="$(find summer_description)/launch/summer_upload.launch">
+    <arg name="limited" value="$(arg limited)"/>
+    </include><!-- push robot_description to factory and spawn robot in gazebo -->
+    <node name="robot2_spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" 
+         args="-urdf -param robot_description -model summer_robot2 -x 1.5
+            -J elbow_joint 1.5
+            -J shoulder_lift_joint -1.22
+            -J shoulder_pan_joint -3.16"
+         output="screen" />
+  </group>
+         
+
+
+
+
+</launch>

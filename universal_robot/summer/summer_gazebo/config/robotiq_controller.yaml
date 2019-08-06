@@ -1,0 +1,45 @@
+# Effort Controllers ---------------------------------------
+robotiq_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+     - finger_1_joint_1
+     - finger_1_joint_2
+     - finger_1_joint_3
+     - finger_2_joint_1
+     - finger_2_joint_2
+     - finger_2_joint_3
+     - finger_middle_joint_1
+     - finger_middle_joint_2
+     - finger_middle_joint_3
+     - palm_finger_1_joint
+     - palm_finger_2_joint
+  constraints:
+      goal_time: 0.04
+      stopped_velocity_tolerance: 0.05
+      finger_1_joint_1: {trajectory: 0.005, goal: 0.005}
+      finger_1_joint_2: {trajectory: 0.005, goal: 0.005}
+      finger_1_joint_3: {trajectory: 0.005, goal: 0.005}
+      finger_2_joint_1: {trajectory: 0.005, goal: 0.005}
+      finger_2_joint_2: {trajectory: 0.005, goal: 0.005}
+      finger_2_joint_3: {trajectory: 0.005, goal: 0.005}
+      finger_middle_joint_1: {trajectory: 0.005, goal: 0.005}
+      finger_middle_joint_2: {trajectory: 0.005, goal: 0.005}
+      finger_middle_joint_3: {trajectory: 0.005, goal: 0.005}
+      palm_finger_1_joint: {trajectory: 0.005, goal: 0.005}
+      palm_finger_2_joint: {trajectory: 0.005, goal: 0.005}
+  stop_trajectory_duration: 0.5
+  state_publish_rate:  25
+  action_monitor_rate: 10
+  gains: # Required because we're controlling an effort interface
+    finger_1_joint_1: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    finger_1_joint_2: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    finger_1_joint_3: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    finger_2_joint_1: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    finger_2_joint_2: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    finger_2_joint_3: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    finger_middle_joint_1: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    finger_middle_joint_2: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    finger_middle_joint_3: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    palm_finger_1_joint: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    palm_finger_2_joint: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+      
