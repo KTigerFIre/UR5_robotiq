@@ -9,7 +9,8 @@ Three different simulations are prepared.
  
 The robotiq 3-f gripper is adopted ros_control based controller which is not same as original robotiq plugin. 
 The reason why I apply the ros_contorol is becuase the original plugin from robotiq package is not good enough for simulation.
-[linkname](https://www.youtube.com/watch?v=4zsZUm7T3LA)
+
+https://www.youtube.com/watch?v=4zsZUm7T3LA
 On youtube, the example of simulation is uploaded.
 
 ##Installastion
