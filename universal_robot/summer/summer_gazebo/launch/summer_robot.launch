@@ -38,6 +38,6 @@
         output="$(arg DEBUG)"
         args="joint_state_controller arm_controller"/>
 
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find urdf_tutorial)/urdf.rviz" />
-
+  <!--<node name="rviz" pkg="rviz" type="rviz" args="-d $(find urdf_tutorial)/urdf.rviz" />
+-->
 </launch>

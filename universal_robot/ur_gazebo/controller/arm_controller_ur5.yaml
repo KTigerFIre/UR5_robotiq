@@ -1,10 +1,8 @@
-  # Publish all joint states -----------------------------------
 joint_state_controller:
     type: joint_state_controller/JointStateController
-    publish_rate: 50    
+    publish_rate: 50  
 
-# Effort Controllers ---------------------------------------
-trajectory_controller:
+arm_controller:
   type: effort_controllers/JointTrajectoryController
   joints:
      - shoulder_pan_joint
@@ -31,16 +29,4 @@ trajectory_controller:
     elbow_joint: {p: 1000,  d: 100, i: 0, i_clamp: 0}
     wrist_1_joint: {p: 1000,  d: 100, i: 0, i_clamp: 0}
     wrist_2_joint: {p: 1000,  d: 100, i: 0, i_clamp: 0}
-    wrist_3_joint: {p: 1000,  d: 100, i: 0, i_clamp: 0}      
-
-# Gripper controller
-gripper_controller:
-  type: position_controllers/GripperActionController
-  joint: robotiq_85_left_knuckle_joint
-  constraints:
-      goal_time: 0.6
-      stopped_velocity_tolerance: 0.05
-      robotiq_85_left_knuckle_joint: {trajectory: 0.1, goal: 0.1}
-  stop_trajectory_duration: 0.5
-  state_publish_rate:  25
-  action_monitor_rate: 10    
+    wrist_3_joint: {p: 1000,  d: 100, i: 0, i_clamp: 0}       
